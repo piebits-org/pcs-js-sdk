@@ -1,5 +1,5 @@
 {
-  "name": "pcs-js-sdk",
+  "name": "@piebits/pcs-js-sdk",
   "version": "0.1.0",
   "description": "The JS sdk to access Piebits Cloud Services",
   "main": "dist/bundle.js",

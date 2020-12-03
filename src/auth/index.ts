@@ -19,6 +19,22 @@ export class AUTH {
     this._config = config
   }
 
+  public logout (refreshToken: string): Promise<object> {
+    return axios.post(
+      `${this._config.app.url}/logout`,
+      { refreshToken },
+      { headers: { 'x-pcs-app': this._config.app.name } }
+    )
+  }
+
+  public refresh (refreshToken: string): Promise<object> {
+    return axios.post(
+      `${this._config.app.url}/refresh`,
+      { refreshToken },
+      { headers: { 'x-pcs-app': this._config.app.name } }
+    )
+  }
+
   public google (googleauthconfig: googleauthconfig): Promise<object> {
     return axios.post(
       `${this._config.app.url}/google`,
