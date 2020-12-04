@@ -11,7 +11,8 @@ export class AUTH {
   private _config: config = {
     app: {
       name: '',
-      url: 'http://localhost:4000'
+      url: 'http://localhost:4000',
+      usesrn: false
     }
   }
 
@@ -23,7 +24,12 @@ export class AUTH {
     return axios.post(
       `${this._config.app.url}/logout`,
       { refreshToken },
-      { headers: { 'x-pcs-app': this._config.app.name } }
+      { 
+        headers: {
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
     )
   }
 
@@ -31,7 +37,12 @@ export class AUTH {
     return axios.post(
       `${this._config.app.url}/refresh`,
       { refreshToken },
-      { headers: { 'x-pcs-app': this._config.app.name } }
+      { 
+        headers: {
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
     )
   }
 
@@ -39,7 +50,12 @@ export class AUTH {
     return axios.post(
       `${this._config.app.url}/google`,
       googleauthconfig,
-      { headers: { 'x-pcs-app': this._config.app.name } }
+      { 
+        headers: {
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
     )
   }
 
@@ -47,7 +63,12 @@ export class AUTH {
     return axios.post(
       `${this._config.app.url}/facebook`,
       facebookauthconfig,
-      { headers: { 'x-pcs-app': this._config.app.name } }
+      { 
+        headers: {
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
     )
   }
 
@@ -55,7 +76,12 @@ export class AUTH {
     return axios.post(
       `${this._config.app.url}/emailpass/signup`,
       emailpassauthconfig,
-      { headers: { 'x-pcs-app': this._config.app.name } }
+      { 
+        headers: {
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
     )
   }
 
@@ -63,7 +89,12 @@ export class AUTH {
     return axios.post(
       `${this._config.app.url}/emailpass/login`,
       emailpassauthconfig,
-      { headers: { 'x-pcs-app': this._config.app.name } }
+      { 
+        headers: {
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
     )
   }
 }
