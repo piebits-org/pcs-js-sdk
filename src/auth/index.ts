@@ -20,6 +20,19 @@ export class AUTH {
     this._config = config
   }
 
+  public getuser (accessToken: string): Promise<object> {
+    return axios.get(
+      `${this._config.app.url}/fetch/user`,
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'x-pcs-app': this._config.app.name,
+          'x-usesrn': this._config.app.usesrn
+        }
+      }
+    )
+  }
+
   public logout (refreshToken: string): Promise<object> {
     return axios.post(
       `${this._config.app.url}/logout`,
