@@ -21,16 +21,30 @@ export class AUTH {
   }
 
   public getuser (accessToken: string): Promise<object> {
-    return axios.get(
-      `${this._config.app.url}/fetch/user`,
-      {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+    return new Promise ((resolve, reject) => {
+      axios.get(
+        `${this._config.app.url}/fetch/user`,
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'x-pcs-app': this._config.app.name,
+            'x-usesrn': this._config.app.usesrn
+          }
         }
-      }
-    )
+      )
+        .then(({ data }) => {
+          const u = {
+            id: data._id,
+            provider: data.provider,
+            status: data.status,
+            ...data.data
+          }
+          resolve(u)
+        })
+        .catch((e) => {
+          reject(e)
+        })
+    })
   }
 
   public logout (refreshToken: string): Promise<object> {
