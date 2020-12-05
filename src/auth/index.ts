@@ -33,7 +33,7 @@ export class AUTH {
         }
       )
         .then(({ data }) => {
-          const u = {
+          var u = {
             id: data._id,
             provider: data.provider,
             status: data.status,
