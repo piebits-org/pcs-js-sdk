@@ -7,16 +7,20 @@ export interface config {
 }
 
 export interface facebookauthconfig {
-  token: string
+  token: string,
+  customData?: object
 }
 
 export interface googleauthconfig {
-  code: string
+  code: string,
+  customData?: object
 }
 
 export interface emailpassauthconfigSIGNUP {
   email: string,
-  password: string
+  password: string,
+  providerData?: object,
+  customData?: object
 }
 
 export interface emailpassauthconfigLOGIN {
