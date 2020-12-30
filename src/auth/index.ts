@@ -11,8 +11,7 @@ export class AUTH {
   private _config: config = {
     app: {
       name: '',
-      url: 'http://localhost:4000',
-      usesrn: false
+      url: 'https://easeauth.cloud.piebits.org'
     }
   }
 
@@ -23,12 +22,11 @@ export class AUTH {
   public getuser (accessToken: string): Promise<object> {
     return new Promise ((resolve, reject) => {
       axios.get(
-        `${this._config.app.url}/fetch/user`,
+        `${this._config.app.url}/actions/fetch/user`,
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`,
-            'x-pcs-app': this._config.app.name,
-            'x-usesrn': this._config.app.usesrn
+            'x-pc-app': this._config.app.name
           }
         }
       )
@@ -49,12 +47,11 @@ export class AUTH {
 
   public logout (refreshToken: string): Promise<object> {
     return axios.post(
-      `${this._config.app.url}/logout`,
+      `${this._config.app.url}/actions/logout`,
       { refreshToken },
       { 
         headers: {
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+          'x-pc-app': this._config.app.name
         }
       }
     )
@@ -62,12 +59,11 @@ export class AUTH {
 
   public refresh (refreshToken: string): Promise<object> {
     return axios.post(
-      `${this._config.app.url}/refresh`,
+      `${this._config.app.url}/actions/refresh`,
       { refreshToken },
       { 
         headers: {
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+          'x-pc-app': this._config.app.name
         }
       }
     )
@@ -75,12 +71,11 @@ export class AUTH {
 
   public google (googleauthconfig: googleauthconfig): Promise<object> {
     return axios.post(
-      `${this._config.app.url}/google`,
+      `${this._config.app.url}/provider/google`,
       googleauthconfig,
       { 
         headers: {
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+          'x-pc-app': this._config.app.name
         }
       }
     )
@@ -88,12 +83,11 @@ export class AUTH {
 
   public facebook (facebookauthconfig: facebookauthconfig): Promise<object> {
     return axios.post(
-      `${this._config.app.url}/facebook`,
+      `${this._config.app.url}/provider/facebook`,
       facebookauthconfig,
       { 
         headers: {
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+          'x-pc-app': this._config.app.name
         }
       }
     )
@@ -101,12 +95,11 @@ export class AUTH {
 
   public emailpass_signup (emailpassauthconfig: emailpassauthconfigSIGNUP): Promise<object> {
     return axios.post(
-      `${this._config.app.url}/emailpass/signup`,
+      `${this._config.app.url}/provider/emailpass/signup`,
       emailpassauthconfig,
       { 
         headers: {
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+          'x-pc-app': this._config.app.name
         }
       }
     )
@@ -114,12 +107,11 @@ export class AUTH {
 
   public emailpass_login (emailpassauthconfig: emailpassauthconfigLOGIN): Promise<object> {
     return axios.post(
-      `${this._config.app.url}/emailpass/login`,
+      `${this._config.app.url}/provider/emailpass/signin`,
       emailpassauthconfig,
       { 
         headers: {
-          'x-pcs-app': this._config.app.name,
-          'x-usesrn': this._config.app.usesrn
+          'x-pc-app': this._config.app.name
         }
       }
     )
