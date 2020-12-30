@@ -1,8 +1,7 @@
 export interface config {
   app: {
     name: string,
-    url: string,
-    usesrn?: boolean
+    url: string
   }
 }
 
